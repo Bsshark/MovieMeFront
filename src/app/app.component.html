@@ -1,8 +1,21 @@
-<div id="page" class="ui-g">
-  <div id="searchBar" class="ui-g-12">
-    <div class="ui-g-4"></div>
-    <div class="ui-g-4">
-      <input type="text" pInputText />
+<div id="page">
+  <div id="searchBar" class="p-grid">
+    <div class="p-col-4"></div>
+    <div class="p-col-4 ui-float-label">
+      <input id="title-movie" type="text" pInputText *ngIf="movie" size="50" (input)="onSearchChange($event.target.value)" />
+      <label for="title-movie">Título</label>
+    </div>
+  </div>
+  <div id="moviePanelContainer" *ngIf="moviePanel">
+    <div id="moviePanel" class="p-grid">
+      <div id="movieCard" class="p-grid-2" *ngFor="let movie of movies">
+        <p-card header="" *ngIf="movie.title">
+          {{movie.title}}
+          <p-header>
+            <img class="movie-poster-panel" src="http://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt="Portada de {{movie.title}}" />
+          </p-header>
+        </p-card>
+      </div>
     </div>
   </div>
 </div>

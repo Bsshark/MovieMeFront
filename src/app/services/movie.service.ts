@@ -15,12 +15,20 @@ export class MovieService {
   constructor(
     private http: HttpClient
   ) {
-    this.MOVIE_URL = 'https://api.themoviedb.org/3/movie/';
+    this.MOVIE_URL = 'https://api.themoviedb.org/3';
     this.API_KEY = '47e9343266e8744b00c528004039ea3b';
 
   }
 
   getMovieById(id: number): Observable<Movie> {
-    return this.http.get<Movie>(this.MOVIE_URL + id + '?api_key=' + this.API_KEY);
+    return this.http.get<Movie>(this.MOVIE_URL + '/movie/' + id + '?api_key=' + this.API_KEY);
+  }
+
+  getMovieByTitle(title: string): Observable<Movie> {
+    return this.http.get<Movie>(this.MOVIE_URL + '/search/movie' + '?api_key=' + this.API_KEY + '&query=' + title);
+  }
+
+  getMoviesByTitle(title: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.MOVIE_URL + '/search/multi' + '?api_key=' + this.API_KEY + '&query=' + title);
   }
 }

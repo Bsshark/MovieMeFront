@@ -8,9 +8,11 @@ import { Movie } from '../app/models/Movie';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public movieTitle: string;
 
-  movie: Movie;
+  movie: Movie = new Movie();
+  movies: Movie[] = [];
+
+  moviePanel = false;
 
   constructor(private movieService: MovieService) {
 
@@ -18,7 +20,19 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getMovieById(2).subscribe((data => {
-      this.movie = data;
+      //this.movie = data;
+    }));
+  }
+
+  onSearchChange(searchValue: string) {
+    this.movieService.getMoviesByTitle(searchValue).subscribe((data => {
+      this.movies = data.results;
+      console.log(this.movies.length);
+      if (this.movies.length > 0) {
+        this.moviePanel = true;
+      } else {
+        this.moviePanel = false;
+      }
     }));
   }
 
