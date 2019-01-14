@@ -1,18 +1,18 @@
 <div id="page">
   <div id="searchBar" class="p-grid">
     <div class="p-col-4"></div>
-    <div class="p-col-4 ui-float-label">
-      <input id="title-movie" type="text" pInputText *ngIf="movie" size="50" (input)="onSearchChange($event.target.value)" />
+    <div class="p-col ui-float-label">
+      <input id="title-movie" type="text" pInputText *ngIf="movie" size="30" (input)="onSearchChange($event.target.value)" />
       <label for="title-movie">Título</label>
     </div>
   </div>
   <div id="moviePanelContainer" *ngIf="moviePanel">
     <div id="moviePanel" class="p-grid">
-      <div id="movieCard" class="p-grid-2" *ngFor="let movie of movies">
-        <p-card header="" *ngIf="movie.title">
-          {{movie.title}}
+      <div id="movieCard" class="p-col-2" *ngFor="let movie of movies">
+        <p-card header="{{movie.title}} ({{movie.release_date | date: 'yyyy'}})" *ngIf="movie.title && movie.genres"
+          styleClass="ui-card-shadow" subheader="{{movie.genres.join(', ')}}">
           <p-header>
-            <img class="movie-poster-panel" src="http://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt="Portada de {{movie.title}}" />
+            <img class="movie-poster-panel" src="http://image.tmdb.org/t/p/w342/{{movie.poster_path}}" alt="Portada de {{movie.title}}" />
           </p-header>
         </p-card>
       </div>
