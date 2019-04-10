@@ -2,26 +2,32 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Input } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-//ANGULAR
+// ANGULAR
 import { FormsModule } from '@angular/forms';
-
-
-//PRIMENG
+import { RouterModule, Routes } from '@angular/router';
+// PRIMENG
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
+import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
+import { MovieSearchComponent } from './pages/movie-search/movie-search.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MovieDetailComponent,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     InputTextModule,
     CardModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
